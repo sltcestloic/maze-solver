@@ -35,11 +35,13 @@ public class MazeSolver extends JPanel {
     int exitColor = 65301;              /* Color to find in the maze (the green square at the exit) */
 
     public MazeSolver() {
+
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
                 debug(me.getX() + " " + me.getY() + " = " + (canvas.getRGB(me.getX(), me.getY()) & 0xFFFFFF));
             }
         });
+
         BufferedImage image = null;
 
         try {
@@ -47,11 +49,13 @@ public class MazeSolver extends JPanel {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+
         canvas = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
         for (int i = 0; i < canvas.getWidth(); i++)
             for (int j = 0; j < canvas.getHeight(); j++)
                 canvas.setRGB(i, j, image.getRGB(i, j));
+
         drawRect(Color.RED.getRGB(), x, y, this.width, this.width);
         solve();
     }
